@@ -3,6 +3,8 @@ import React from 'react'
 import Card from '../components/card'
 import FormGroup from '../components/form-group'
 import {withRouter} from 'react-router-dom'
+import UsuarioService from '../app/service/usuarioService'
+import {mensagemSucesso, mensagemErro} from '../components/toastr'
 
 class CadastroUsuario extends React.Component {
     
@@ -10,11 +12,29 @@ class CadastroUsuario extends React.Component {
     nome : '',
     email: '',
     senha : '',
-    sengaRepeticao : ''
+    senhaRepeticao : ''
 }
 
+
+    constructor(){
+        super()
+        this.service = new UsuarioService();
+    }
+
  cadastrar = () =>{
-     console.log(this.state)
+     const usuario = {
+         nome: this.state.nome,
+         email: this.state.email,
+         senha: this.state.senha
+     }
+
+     this.service.salvar(usuario)
+        .then(response => {
+            mensagemSucesso('Usuario cadastrar com sucesso! Faça o login para acessar o sistema.')
+            this.props.history.push('/login')
+        }).catch(Error => {
+            mensagemErro(Error.response.data)
+        } )
  }
 
  cancelar = () => {
@@ -52,7 +72,7 @@ class CadastroUsuario extends React.Component {
                              id="inputSenhaRepetido"
                              className="form-control"
                              name="senhaRepetido"
-                             onChange={e => this.setState({sengaRepeticao: e.target.value})} />
+                             onChange={e => this.setState({senhaRepeticao: e.target.value})} />
                         </FormGroup>
                         <button onClick= {this.cadastrar} className ="btn btn-success"> Salvar</button>
                         <button onClick={this.cancelar} className ="btn btn-danger">Cancelar</button>
