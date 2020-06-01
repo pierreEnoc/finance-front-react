@@ -6,6 +6,10 @@ class UsuarioService extends ApiService {
         super('/api/usuarios')
     }
 
+    autenticar(credencias){
+        return this.post('/autenticar', credencias)
+    }
+
 }
 
 export default UsuarioService;
