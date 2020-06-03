@@ -7,8 +7,8 @@ export default class LancamentoService extends ApiService {
 
     }
 
-    consular (lancamentoFiltro){
-        let params = `?ano${lancamentoFiltro.ano}`
+    consultar (lancamentoFiltro){
+        let params =`?ano${lancamentoFiltro.ano}`
 
         if (lancamentoFiltro.mes){
             params =`${params}&mes=${lancamentoFiltro.mes}`
@@ -22,8 +22,11 @@ export default class LancamentoService extends ApiService {
             params =`${params}&status=${lancamentoFiltro.status}`
         }
 
+        if(lancamentoFiltro.usuario){
+            params =`${params}&usuario=${lancamentoFiltro.usuario}`
+        }
 
-        return this.get(params)
+        return this.get(params);
     }
 
 }
