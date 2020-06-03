@@ -11,7 +11,6 @@ import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 
-import {Button} from 'primereact/button'
 
 class App extends React.Component {
   
@@ -19,7 +18,6 @@ class App extends React.Component {
   return (
   <>
     <Navbar />
-    <Button  label="Click" icon="pi pi-check" iconPos="right" />
     <div className="container">
        <Rotas />
     </div>
