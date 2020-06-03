@@ -1,13 +1,14 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
-import Card from '../components/card'
-import FormGroup from '../components/form-group'
-import SelectMenu from '../components/selectMenu'
+import Card from '../../components/card'
+import FormGroup from '../../components/form-group'
+import SelectMenu from '../../components/selectMenu'
+import LancamentosTable from './lancamentosTable'
 
 class ConsultaLancamentos extends React.Component {
 
     render(){
-        const lista  = [
+        const meses  = [
             { label: 'selecione...', value: '' },
             { label: 'Janeiro', value: 1 },
             { label: 'Fevereiro', value: 2 },
@@ -24,6 +25,16 @@ class ConsultaLancamentos extends React.Component {
             
         ]
 
+        const tipos =[
+            {label: 'Selecione...', value: ' '},
+            {label: 'Despesa', value: 'DESPESA'},
+            {label: 'Receita', value: ' RECEITA'},
+        ]
+
+        const lancamentos = [
+            { id: 1, descricao: 'Salário', valor:5000, mes: 1, tipo: 'Receita', status: 'Efetivado' }
+       ]
+
         return(
             <Card title= "Consulta Lancamentos">
                 <div className="row">
@@ -31,22 +42,32 @@ class ConsultaLancamentos extends React.Component {
                         <div className ="bs-component">
                             <FormGroup htmlFor = "inputAno" label ="Ano: *">
                          <input type="text" 
-                            class="form-control" 
+                            className="form-control" 
                             id="inputAno"
                             aria-describedby="emailHelp" 
                             placeholder="Digite o Ano" />
                             </FormGroup>
+
                             <FormGroup htmlFor = "inputAno" label ="Mês: ">
-                                <SelectMenu className ="form-control" lista={lista} />
-                        
+                                <SelectMenu id="inputMes" className ="form-control" lista={meses} />
                             </FormGroup>
-
-
+                            
+                            <FormGroup htmlFor = "inputTopo" label ="Tipo Lancamento">
+                                <SelectMenu id="inputTipo" className ="form-control" lista={tipos} />
+                            </FormGroup>
+                            <button type="button" className="btn btn-success">Buscar</button>
+                            <button type="button" className="btn btn-danger">Cadastrar</button>
                         </div>
-
                     </div>
-
                 </div>
+                 <br />
+                <div className="row">
+                <div className="col-md-12">
+                <div className="bs-component">
+                    <LancamentosTable lancamentos={lancamentos} />
+                </div>
+              </div>
+             </div>
 
             </Card>
 
