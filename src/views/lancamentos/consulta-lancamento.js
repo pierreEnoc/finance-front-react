@@ -50,6 +50,14 @@ class ConsultaLancamentos extends React.Component {
             })
     }
 
+    ediatr = (id) => {
+        console.log('editando lancamento', id)
+    }
+
+    deletar = (id) => {
+        console.log('deletar lancamento', id)
+    }
+
     render(){
         const meses  = this.service.obterListaMeses();
         const tipos =  this.service.obterListaTipos();
@@ -105,7 +113,9 @@ class ConsultaLancamentos extends React.Component {
                 <div className="row">
                 <div className="col-md-12">
                 <div className="bs-component">
-                    <LancamentosTable lancamentos={this.state.lancamentos} />
+                    <LancamentosTable lancamentos={this.state.lancamentos } 
+                                        deletAction={this.deletar} 
+                                        editAction={this.ediatr}/>
                 </div>
               </div>
              </div>
