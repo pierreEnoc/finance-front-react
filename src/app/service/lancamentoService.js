@@ -29,10 +29,15 @@ export default class LancamentoService extends ApiService {
 
     obterListaTipos(){
         return [
-            {label: 'Selecione...', value: ' '},
-            {label: 'Despesa', value: 'DESPESA'},
-            {label: 'Receita', value: ' RECEITA'},
+        {label: 'Selecione...', value: ' '},
+        {label: 'Despesa', value: 'DESPESA'},
+        {label: 'Receita', value: 'RECEITA'},
         ]
+
+    }
+
+    salvar(lancamento){
+        return this.post('/', lancamento);
 
     }
 

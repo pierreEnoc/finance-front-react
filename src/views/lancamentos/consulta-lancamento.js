@@ -164,7 +164,7 @@ class ConsultaLancamentos extends React.Component {
                         onHide={() => this.setState({showConfirmDialog: false})}>
                     Confirma a exclusão deste Lançamento?
                 </Dialog>
-            </div>
+                </div>
         </Card>
 
         )
