@@ -30,18 +30,10 @@ class CadastroLancamentos extends React.Component {
 
     componentDidMount(){
         const params = this.props.match.params
-
-        if(params.id){
-            this.service
-                .obterPorId(params.id)
-                .then(response => {
-                    this.setState( {...response.data, atualizando: true} )
-                })
-                .catch(erros => {
-                    messages.mensagemErro(erros.response.data)
-                })
-        }
+         console.log('params:', params)
+       
     }
+
 
     submit = () => {
         const usuarioLogado = LocalStorageService.obterItem('_usuario_logado')

@@ -59,7 +59,7 @@ class ConsultaLancamentos extends React.Component {
 
 
    editar = (id) => {
-        console.log('editando lancamento', id)
+     this.props.history.push(`/cadastro-lancamentos/${id}`)
     }
 
 
@@ -159,7 +159,7 @@ class ConsultaLancamentos extends React.Component {
                 <div className="bs-component">
                     <LancamentosTable lancamentos={this.state.lancamentos } 
                                         deleteAction={this.abrirConfirmacao} 
-                                        editAction={this.ediatr}/>
+                                        editAction={this.editar}/>
                 </div>
               </div>
              </div>
