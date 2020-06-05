@@ -1,6 +1,5 @@
 import ApiService from '../apiservise'
 import ErroValidacao from '../exception/erroValidacao'
-import erroValidacao from '../exception/erroValidacao';
 
 class UsuarioService extends ApiService {
 
@@ -40,9 +39,9 @@ class UsuarioService extends ApiService {
         }
 
         if(erros && erros.length > 0){
-            throw new erroValidacao(erros);
+            throw new ErroValidacao(erros);
         }
-        //return erros;
+       
     }
 
 }
