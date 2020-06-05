@@ -32,13 +32,12 @@ class ConsultaLancamentos extends React.Component {
     }
 
     buscar = () => {
-       if(!this.state.ano ){
-           messages.mensagemErro('O preenchimento do campo Ano é obrigatoro.')
-
+        if(!this.state.ano){
+            messages.mensagemErro('O preenchimento do campo Ano é obrigatório.')
             return false;
-       }
+        }
 
-        const usuarioLogado = LocalStorageService.obterItem('_usuario_logado')
+        const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');
 
         const lancamentoFiltro = {
             ano: this.state.ano,
@@ -50,17 +49,18 @@ class ConsultaLancamentos extends React.Component {
 
         this.service
             .consultar(lancamentoFiltro)
-            .then(resposta => {
+            .then( resposta => {
                 const lista = resposta.data;
-
-                if (resposta.data.lenght < 1){
-                    messages.mensagemAlert("Nenhum resultado encontrado");
+                
+                if(lista.length < 1){
+                    messages.mensagemAlert("Nenhum resultado encontrado.");
                 }
-                this.setState({lancamentos: lista})
-            }).catch(Error => {
-                console.log(Error)
+                this.setState({ lancamentos: lista })
+            }).catch( error => {
+                console.log(error)
             })
     }
+
 
 
    editar = (id) => {
