@@ -30,7 +30,16 @@ class CadastroLancamentos extends React.Component {
 
     componentDidMount(){
         const params = this.props.match.params
-         console.log('params:', params)
+        
+        if(params.id){
+            this.service
+            .obterPorId(params.id)
+                .then(response => {
+                    this.setState({...response.data, atualizando: true})
+                }).catch(erros => {
+                    messages.mensagemErro(erros.response.data)
+                })
+        }      
        
     }
 
@@ -53,8 +62,8 @@ class CadastroLancamentos extends React.Component {
 
     atualizar = () => {
         const { descricao, valor, mes, ano, tipo, status, usuario, id } = this.state;
-
         const lancamento = { descricao, valor, mes, ano, tipo, usuario, status, id };
+       // const lancamento = { descricao, valor, mes, ano, tipo, usuario, status, id };
 
         this.service
             .atualizar(lancamento)
