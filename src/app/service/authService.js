@@ -20,7 +20,7 @@ export default class AuthService {
 
 
     static obterUsuarioAutenticado(){
-        LocalStorageService.obterItem(USUARIO_LOGADO)
+      return LocalStorageService.obterItem(USUARIO_LOGADO)
     }
 
 

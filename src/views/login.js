@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom'
 import {AuthContext } from '../main/provedorAutenticacao'
 
 import UsuarioService from '../app/service/usuarioService'
-import localStorageService from '../app/service/localstorageService'
 import {mensagemErro} from '../components/toastr'
 
 
@@ -25,9 +24,7 @@ class Login extends React.Component {
         this.service.autenticar({
             email: this.state.email,
             senha: this.state.senha
-           
         }).then( response => {
-            
             this.context.iniciarSessao(response.data)
             this.props.history.push('/home')
         }).catch( erro => {

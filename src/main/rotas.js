@@ -6,6 +6,7 @@ import AuthService from '../app/service/authService'
 import CadastroUsuario from '../views/cadastroUsuario'
 import ConsultaLancamentos from '../views/lancamentos/consulta-lancamento'
 import  CadastroLancamentos from '../views/lancamentos/cadastro-lancamentos'
+import { AuthConsumer } from '../main/provedorAutenticacao'
 
 import { Route, Switch, HashRouter, Redirect} from 'react-router-dom'
 
@@ -28,19 +29,28 @@ function RotaAutenticada( { component: Component, isUsuarioAutenticado, ...props
 }
 
 
-function Rotas(){
+function Rotas(props){
     return(
         <HashRouter>
             <Switch>
-                <RotaAutenticada path ="/home" component={Home} />  
                 <Route path ="/login" component={Login} />
+                <RotaAutenticada isUsuarioAutenticado={props.isUsuarioAutenticado} path ="/home" component={Home} />  
+           
 
                 <Route path ="/cadastroUsuario" component={CadastroUsuario} />
-                <RotaAutenticada path ="/consulta-lancamentos" component={ConsultaLancamentos} />
-                <RotaAutenticada path ="/cadastro-lancamentos/:id?" component={CadastroLancamentos} />
+                <RotaAutenticada isUsuarioAutenticado={props.isUsuarioAutenticado} path ="/consulta-lancamentos" component={ConsultaLancamentos} />
+                <RotaAutenticada isUsuarioAutenticado={props.isUsuarioAutenticado} path ="/cadastro-lancamentos/:id?" component={CadastroLancamentos} />
             </Switch>
         </HashRouter>
     )
 }
 
-export default Rotas
+
+export default () => (
+    <AuthConsumer>
+        {
+
+          (context) => (<Rotas isUsuarioAutenticado = {context.isUsuarioAutenticado} /> )}
+
+    </AuthConsumer>
+)
