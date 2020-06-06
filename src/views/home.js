@@ -1,6 +1,6 @@
 import React from 'react'
 import UsuarioService from '../app/service/usuarioService'
-import LocalStorageService from '../app/service/localstorageService'
+import { AuthContext } from '../main/provedorAutenticacao'
 
 class Home extends React.Component {
   
@@ -15,9 +15,10 @@ class Home extends React.Component {
 
     componentDidMount(){
       // const usuarioLogadoString = localStorage.getItem('_usuario_logado')
-            const usuarioLogado = LocalStorageService.obterItem ('_usuario_logado') 
-            this.usuarioService.obterSaldoPorUsuario(usuarioLogado.id)
+            const usuarioLogado = this.context.usuarioAutenticado;
 
+            this.usuarioService
+            .obterSaldoPorUsuario(usuarioLogado.id)
             .then(response => {
                 this.setState({saldo: response.data})
             }).catch(error => {
@@ -51,4 +52,5 @@ class Home extends React.Component {
     }
 }
 
+Home.contextType = AuthContext
 export default Home
